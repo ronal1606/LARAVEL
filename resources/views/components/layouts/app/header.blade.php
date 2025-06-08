@@ -3,44 +3,66 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="min-h-screen bg-white" style="background-image: url('{{ asset('images/fondo5.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        
+        <flux:header container class="z-50 border-b border-green-700 bg-green-100 dark:border-green-800 dark:bg-green-900">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-            <a href="{{ route('dashboard') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0" wire:navigate>
-                <x-app-logo />
-            </a>
+            <!-- Logo a la izquierda -->
+            <img src="{{ asset('images/logo2.png') }}" alt="" class="h-15 w-auto">
 
-            <flux:navbar class="-mb-px max-lg:hidden">
-                <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
-                </flux:navbar.item>
+            <!-- Spacer para centrar el menú -->
+            <flux:spacer />
+
+            <!-- Menú centrado -->
+            <flux:navbar class="-mb-px max-lg:hidden space-x-8 rtl:space-x-reverse text-sm font-medium text-white justify-center flex-1">
+                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'border-b-2 border-yellow-400 text-white' : 'hover:text-yellow-300' }}" wire:navigate>
+                    Inicio
+                </a>
+                <a href="{{ route('categorias') }}" class="{{ request()->routeIs('categorias') ? 'border-b-2 border-yellow-400 text-white' : 'hover:text-yellow-300' }}">
+                    Categorías
+                </a>
+                <a href="{{ route('nosotros') }}" class="{{ request()->routeIs('nosotros') ? 'border-b-2 border-yellow-400 text-white' : 'hover:text-yellow-300' }}">
+                    Nosotros
+                </a>
+                <a href="{{ route('servicios') }}" class="{{ request()->routeIs('servicios') ? 'border-b-2 border-yellow-400 text-white' : 'hover:text-yellow-300' }}">
+                    Servicios
+                </a>
+                <a href="{{ route('contactanos') }}" class="{{ request()->routeIs('contactanos') ? 'border-b-2 border-yellow-400 text-white' : 'hover:text-yellow-300' }}">
+                    Contáctanos
+                </a>
             </flux:navbar>
+
 
             <flux:spacer />
 
             <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-                <flux:tooltip :content="__('Search')" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Repository')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="folder-git-2"
-                        href="https://github.com/laravel/livewire-starter-kit"
-                        target="_blank"
-                        :label="__('Repository')"
+                <!-- Buscador con input -->
+                <form class="flex items-center">
+                    <input
+                        type="text"
+                        placeholder="Buscar..."
+                        class="rounded-full px-3 py-1 text-sm bg-white text-black border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400"
                     />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Documentation')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="book-open-text"
-                        href="https://laravel.com/docs/starter-kits#livewire"
-                        target="_blank"
-                        label="Documentation"
-                    />
-                </flux:tooltip>
+                    <button type="submit" class="ml-2 text-green-700 hover:text-green-900">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <!-- Carrito con contador dinámico -->
+                @php
+                    $cart = session('cart', []);
+                    $cart_count = array_sum($cart);
+                @endphp
+                {{-- 
+                <a href="{{ route('carrito') }}" class="relative mx-4 text-green-400 hover:text-green-600 transition" title="Carrito">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    @if($cart_count > 0)
+                        <span class="absolute -top-2 -right-2 bg-yellow-400 text-black rounded-full text-xs px-2 py-0.5 font-bold">
+                            {{ $cart_count }}
+                        </span>
+                    @endif
+                </a>
+                --}}
             </flux:navbar>
 
             <!-- Desktop User Menu -->
@@ -49,6 +71,7 @@
                     class="cursor-pointer"
                     :initials="auth()->user()->initials()"
                 />
+                
 
                 <flux:menu>
                     <flux:menu.radio.group>
@@ -73,7 +96,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Ajustes') }}</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -86,6 +109,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            
         </flux:header>
 
         <!-- Mobile Menu -->
@@ -102,18 +126,6 @@
                     {{ __('Dashboard') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
-            </flux:navlist>
-
-            <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
             </flux:navlist>
         </flux:sidebar>
 

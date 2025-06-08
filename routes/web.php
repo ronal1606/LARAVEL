@@ -20,8 +20,12 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-Route::get('/verify-code', VerifyCode::class)
-    ->middleware('auth')
-    ->name('verify-code');
+Volt::route('/verify-code', 'auth.verify-code')->name('verify-code');
+
+
+Volt::route('/categorias', 'categorias')->name('categorias');
+Volt::route('/nosotros', 'nosotros')->name('nosotros');
+Volt::route('/servicios', 'servicios')->name('servicios');
+Volt::route('/contactanos', 'contactanos')->name('contactanos');
 
 require __DIR__.'/auth.php';
