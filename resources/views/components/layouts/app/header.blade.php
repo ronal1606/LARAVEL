@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         @include('partials.head')
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
     <body class="min-h-screen bg-white" style="background-image: url('{{ asset('images/fondo5.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         
@@ -49,20 +51,7 @@
                     </button>
                 </form>
                 <!-- Carrito con contador dinámico -->
-                @php
-                    $cart = session('cart', []);
-                    $cart_count = array_sum($cart);
-                @endphp
-                {{-- 
-                <a href="{{ route('carrito') }}" class="relative mx-4 text-green-400 hover:text-green-600 transition" title="Carrito">
-                    <i class="fas fa-shopping-cart text-2xl"></i>
-                    @if($cart_count > 0)
-                        <span class="absolute -top-2 -right-2 bg-yellow-400 text-black rounded-full text-xs px-2 py-0.5 font-bold">
-                            {{ $cart_count }}
-                        </span>
-                    @endif
-                </a>
-                --}}
+                <livewire:carrito-icon />
             </flux:navbar>
 
             <!-- Desktop User Menu -->

@@ -3,7 +3,8 @@
         <div class="max-w-xl">
             <div class="text-sm mb-4 italic font-serif">Original &amp; Natural</div>
             <h1 class="text-5xl md:text-6xl font-extrabold mb-4 flex items-center gap-2 font-[Oswald,sans-serif] whitespace-nowrap">
-                EL DIAMANTE <span>🍋🍋</span>
+                EL DIAMANTE
+                <img src="{{ asset('images/guava.png') }}" alt="Limón" class="inline w-10 h-10 md:w-12 md:h-12">
             </h1>
             <p class="mb-4">
                 En Agroinsumos El Diamante trabajamos día a día para brindar a nuestros clientes los mejores productos para el campo. Somos una empresa dedicada a la comercialización de insumos agrícolas como herbicidas, fungicidas, insecticidas, fertilizantes, semillas certificadas, herramientas y más, comprometidos con la calidad, la innovación y el apoyo al crecimiento del sector agropecuario.

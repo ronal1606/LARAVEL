@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Livewire\Auth\VerifyCode;
+use App\Livewire\CarritoPage;
+use App\Livewire\Categorias;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,9 +25,10 @@ Route::middleware(['auth'])->group(function () {
 Volt::route('/verify-code', 'auth.verify-code')->name('verify-code');
 
 
-Volt::route('/categorias', 'categorias')->name('categorias');
+Route::get('/categorias', Categorias::class)->name('categorias');
 Volt::route('/nosotros', 'nosotros')->name('nosotros');
 Volt::route('/servicios', 'servicios')->name('servicios');
 Volt::route('/contactanos', 'contactanos')->name('contactanos');
+Route::get('/carrito', CarritoPage::class)->name('carrito');
 
 require __DIR__.'/auth.php';
