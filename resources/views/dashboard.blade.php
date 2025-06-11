@@ -10,8 +10,10 @@
                 En Agroinsumos El Diamante trabajamos día a día para brindar a nuestros clientes los mejores productos para el campo. Somos una empresa dedicada a la comercialización de insumos agrícolas como herbicidas, fungicidas, insecticidas, fertilizantes, semillas certificadas, herramientas y más, comprometidos con la calidad, la innovación y el apoyo al crecimiento del sector agropecuario.
             </p>
         </div>
-        <div class="flex flex-col items-end justify-start" style="margin-top: -100px;">
-            <img src="{{ asset('images/ofertas.png') }}" alt="Productos" class="w-[300px] md:w-[380px] drop-shadow-2xl">
+        <div class="flex flex-col items-end justify-start" style="margin-top: -190px;">
+            <a href="{{ route('categorias') }}">
+                <img src="{{ asset('images/ofertas.png') }}" alt="Productos" class="w-[300px] md:w-[380px] drop-shadow-2xl hover:scale-105 transition-transform duration-200">
+            </a>
         </div>
     </div>
 
@@ -22,7 +24,7 @@
     </div>
 
     <!-- Tarjetas de Categorías (azul) -->
-    <div class="relative px-8">
+    <div class="relative px-10">
         <div class="flex items-end justify-between">
             <!-- Tarjetas de Categorías -->
             <div class="grid grid-cols-2 md:grid-cols-6 gap-4 w-full md:w-[85%]">
