@@ -75,13 +75,36 @@ new class extends Component {
         @foreach ($categorias as $categoria)
             <div id="cat-{{ $categoria->id }}"
                 style="
-                background: rgba(255,255,255,0.7);
-                backdrop-filter: blur(10px);
-                border-radius: 2rem;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-                padding: 2rem;
-                margin-bottom: 3rem;
-            ">
+                    position: relative;
+                    background: rgba(255,255,255,0.7);
+                    backdrop-filter: blur(10px);
+                    border-radius: 2rem;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                    padding: 2rem;
+                    margin-bottom: 3rem;
+                ">
+                {{-- Botón Volver al inicio --}}
+                <a href="#"
+                    style="
+                        position: absolute;
+                        top: 1.5rem;
+                        right: 2rem;
+                        background: #e53935;
+                        color: #fff;
+                        padding: 0.6rem 1.2rem;
+                        border-radius: 0.7rem;
+                        font-weight: bold;
+                        text-decoration: none;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+                        transition: background 0.2s;
+                        border: none;
+                        cursor: pointer;
+                    "
+                    onmouseover="this.style.background='#b71c1c';"
+                    onmouseout="this.style.background='#e53935';"
+                >
+                    Volver al inicio
+                </a>
                 <h3 style="color: #222; font-size: 2rem; margin-bottom: 0.5rem;">{{ $categoria->name }}</h3>
                 <p style="color: #666; margin-bottom: 2rem;">{{ $categoria->description }}</p>
                 <div
